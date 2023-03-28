@@ -1,7 +1,6 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-
 // $(function () 
 
 
@@ -12,7 +11,10 @@
 // time-block containing the button that was clicked? How might the id be
 // useful when saving the description in local storage?
 
-$('.saveBtn').on('click', 'localStorage.setItem('', )
+// gets location of the current-hour's textarea field
+var hourlyToDos = $('textarea')
+// save that textarea to storage, tied to the correct hour parent
+$('.saveBtn').on('click', 'localStorage.setItem(hourID + "-toDos, hourlyToDos)')
 
 //
 // TODO: Add code to apply the past, present, or future class to each time
@@ -21,25 +23,32 @@ $('.saveBtn').on('click', 'localStorage.setItem('', )
 // past, present, and future classes? How can Day.js be used to get the
 // current hour in 24-hour time?
 
-var currentHour = "hour-13"
-var hourID = $('.time-block').attr('id');
+var currentHour = "hour-8"
+var hourBlock = $('.time-block').attr('id');
 
 console.log(currentHour);
-console.log(hourID);
+console.log(hourBlock);
 
 
-if (hourID < currentHour) {
+function applyColorCoding () {
+  
+  if (currentHour > hourBlock) {
   $('.time-block').attr('class', 'row time-block past');
-} else if (hourID === currentHour) {
+
+} else if (currentHour === hourBlock) {
   $('.time-block').attr('class', 'row time-block present');
+
 } else { $('.time-block').attr('class', 'row time-block future');
+
+}
 }
 
 
-
-  //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
+
+localStorage.getItem(hourBlock, hourToDos.value)
+
   //
   // TODO: Add code to display the current date in the header of the page.
