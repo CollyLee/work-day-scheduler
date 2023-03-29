@@ -4,6 +4,44 @@
 // $(function () 
 
 
+
+
+// -------------------------------------------------------------------------------
+// TODO: Add code to apply the past, present, or future class to each time
+// block by comparing the id to the current hour. HINTS: How can the id
+// attribute of each time-block be used to conditionally add or remove the
+// past, present, and future classes? How can Day.js be used to get the
+// current hour in 24-hour time?
+
+var currentHour = "hour-13"
+var hourBlock = $('.time-block').attr('id');
+// var hourBlock = "hour-9"
+
+console.log("currentHour is "+currentHour);
+console.log("hourBlock is "+hourBlock);
+
+
+$('.time-block').each(function() {
+  if (currentHour > $(hourBlock)) {
+  $(this).attr('class', 'row time-block past');
+
+} else if (currentHour === $(hourBlock)) {
+  $(this).attr('class', 'row time-block present');
+
+} else { $(this).attr('class', 'row time-block future');
+
+}
+})
+// -------------------------------------------------------------------------------
+
+  // TODO: Add code to get any user input that was saved in localStorage and set
+  // the values of the corresponding textarea elements. HINT: How can the id
+  // attribute of each time-block be used to do this?
+
+  
+  
+
+// ------------------------------------------------------------------------------
 // TODO: Add a listener for click events on the save button. This code should
 // use the id in the containing time-block as a key to save the user input in
 // local storage. HINT: What does `this` reference in the click listener
@@ -11,44 +49,12 @@
 // time-block containing the button that was clicked? How might the id be
 // useful when saving the description in local storage?
 
-// gets location of the current-hour's textarea field
-var hourlyToDos = $('textarea')
-// save that textarea to storage, tied to the correct hour parent
-$('.saveBtn').on('click', 'localStorage.setItem(hourID + "-toDos, hourlyToDos)')
+   // save button event listener
+   $('.saveBtn').on('click', saveTasks) 
 
-//
-// TODO: Add code to apply the past, present, or future class to each time
-// block by comparing the id to the current hour. HINTS: How can the id
-// attribute of each time-block be used to conditionally add or remove the
-// past, present, and future classes? How can Day.js be used to get the
-// current hour in 24-hour time?
-
-var currentHour = "hour-8"
-var hourBlock = $('.time-block').attr('id');
-
-console.log(currentHour);
-console.log(hourBlock);
-
-
-function applyColorCoding () {
-  
-  if (currentHour > hourBlock) {
-  $('.time-block').attr('class', 'row time-block past');
-
-} else if (currentHour === hourBlock) {
-  $('.time-block').attr('class', 'row time-block present');
-
-} else { $('.time-block').attr('class', 'row time-block future');
-
-}
-}
-
-
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-
-localStorage.getItem(hourBlock, hourToDos.value)
-
-  //
+   function saveTasks () {
+    localStorage.setItem('hour-tasks', $('.saveBtn').parent())
+    console.log($('.saveBtn').parent());
+  }
+ 
   // TODO: Add code to display the current date in the header of the page.
