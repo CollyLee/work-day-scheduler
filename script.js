@@ -40,8 +40,9 @@ $('.time-block').each(function () {
 var storageOutput = JSON.parse(localStorage.getItem('hour-tasks')) || []
 console.log(storageOutput);
 
-$('description').each(function () {
-  ($(this)[0]).value((storageOutput)[0]);
+$('.description').each(function (indexItem) {
+  console.log(this);
+  ($(this)).val(storageOutput[indexItem]);
 })
 
 // ------------------------------------------------------------------------------
